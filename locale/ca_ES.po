@@ -1,0 +1,11 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "error:sale.sale:"
+msgid ""
+"There are not enough stock of product \"%s\" at this moment at the warehouse"
+" to make this sale."
+msgstr ""
+"No hi ha prou estoc del producte \"%s\" en aquest moment al magatzem per fer"
+" aquesta venda."

@@ -8,6 +8,7 @@ __all__ = ['Sale']
 __metaclass__ = PoolMeta
 PRODUCT_TYPES = ['goods']
 
+
 class Sale:
     __name__ = 'sale.sale'
 

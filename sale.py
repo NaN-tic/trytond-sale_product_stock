@@ -4,10 +4,9 @@
 from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
 
-
 __all__ = ['Sale']
 __metaclass__ = PoolMeta
-
+PRODUCT_TYPES = ['goods']
 
 class Sale:
     __name__ = 'sale.sale'
@@ -31,6 +30,8 @@ class Sale:
         for sale in sales:
             locations = [sale.warehouse.id]
             for line in sale.lines:
+                if not line.product or line.product.type not in PRODUCT_TYPES:
+                    continue
                 with Transaction().set_context(locations=locations):
                     quantity = Product.get_quantity([line.product], 'quantity')
                 if not quantity or quantity[line.product.id] < line.quantity:

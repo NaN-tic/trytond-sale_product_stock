@@ -9,3 +9,21 @@ msgid ""
 msgstr ""
 "No hay suficiente estoc del producto \"%s\" en este momento en el almacén "
 "para hacer esta venta."
+
+msgctxt "field:sale.configuration,enough_stock_qty:"
+msgid "Quantity Stock"
+msgstr "Cantidad stock"
+
+msgctxt "help:sale.configuration,enough_stock_qty:"
+msgid "Manage Stock is Product Quantity or Product Forecast Quantity"
+msgstr ""
+"Gestiona el stock por la cantidad del producto o la cantidad prevista del "
+"producto."
+
+msgctxt "selection:sale.configuration,enough_stock_qty:"
+msgid "Forecast Quantity"
+msgstr "Cantidad prevista"
+
+msgctxt "selection:sale.configuration,enough_stock_qty:"
+msgid "Quantity"
+msgstr "Cantidad"

@@ -26,15 +26,45 @@ class Sale:
         cls.enough_stock(sales)
 
     @classmethod
+    def check_enough_stock(cls):
+        return True
+
+    @classmethod
+    def get_enough_stock_qty(cls):
+        Config = Pool().get('sale.configuration')
+        return Config(1).enough_stock_qty or 'quantity'
+
+    @classmethod
     def enough_stock(cls, sales):
+        if not cls.check_enough_stock():
+            return
+
         Product = Pool().get('product.product')
+
+        # get all products
+        products = []
         for sale in sales:
             locations = [sale.warehouse.id]
             for line in sale.lines:
                 if not line.product or line.product.type not in PRODUCT_TYPES:
                     continue
-                with Transaction().set_context(locations=locations):
-                    quantity = Product.get_quantity([line.product], 'quantity')
-                if not quantity or quantity[line.product.id] < line.quantity:
-                    cls.raise_user_warning('not_enough_stock_%s' % line.id,
-                        'not_enough_stock', line.product.name)
+                if line.product not in products:
+                    products.append(line.product)
+
+        # get quantity
+        with Transaction().set_context(locations=locations):
+            quantities = Product.get_quantity(
+                [line.product],
+                cls.get_enough_stock_qty(),
+                )
+
+        # check enough stock
+        for sale in sales:
+            for line in sale.lines:
+                if line.product and line.product.id in quantities:
+                    qty = quantities[line.product.id]
+                    if qty < line.quantity:
+                        cls.raise_user_warning('not_enough_stock_%s' % line.id,
+                            'not_enough_stock', line.product.name)
+                    # update quantities
+                    quantities[line.product.id] = qty - line.quantity

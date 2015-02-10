@@ -54,7 +54,7 @@ class Sale:
         # get quantity
         with Transaction().set_context(locations=locations):
             quantities = Product.get_quantity(
-                [line.product],
+                products,
                 cls.get_enough_stock_qty(),
                 )
 

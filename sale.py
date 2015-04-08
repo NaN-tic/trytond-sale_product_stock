@@ -27,6 +27,8 @@ class Sale:
 
     @classmethod
     def check_enough_stock(cls):
+        if Transaction().context.get('without_warning'):
+            return False
         return True
 
     @classmethod

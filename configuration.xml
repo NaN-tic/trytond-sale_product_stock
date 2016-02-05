@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- This file is part esale module for Tryton.
+<!-- This file is part sale_product_stock module for Tryton.
 The COPYRIGHT file at the top level of this repository contains the full copyright notices and license terms. -->
 <tryton>
     <data>
@@ -8,6 +8,11 @@ The COPYRIGHT file at the top level of this repository contains the full copyrig
             <field name="type">form</field>
             <field name="inherit" ref="sale.sale_configuration_view_form"/>
             <field name="name">configuration_form</field>
+        </record>
+        <record model="ir.property" id="property_sale_enough_stock_qty">
+            <field name="field"
+                search="[('model.model', '=', 'sale.configuration'), ('name', '=', 'enough_stock_qty')]" />
+            <field name="value">,quantity</field>
         </record>
     </data>
 </tryton>

@@ -5,10 +5,10 @@ from trytond.model import fields
 from trytond.pool import PoolMeta
 
 __all__ = ['Configuration']
-__metaclass__ = PoolMeta
 
 
 class Configuration:
+    __metaclass__ = PoolMeta
     __name__ = 'sale.configuration'
     enough_stock_qty = fields.Property(fields.Selection([
         ('quantity', 'Quantity'),

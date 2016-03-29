@@ -5,11 +5,11 @@ from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
 
 __all__ = ['Sale']
-__metaclass__ = PoolMeta
 PRODUCT_TYPES = ['goods']
 
 
 class Sale:
+    __metaclass__ = PoolMeta
     __name__ = 'sale.sale'
 
     @classmethod
